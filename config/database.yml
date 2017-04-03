@@ -12,7 +12,7 @@ default: &default
 
 development:
   <<: *default
-  database: sd_squared_form_development
+  database: sd_squared_form_development2
   username: root
   password: root
   socket: /var/run/mysqld/mysqld.sock
@@ -22,7 +22,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: sd_squared_form_test
+  database: sd_squared_form_test2
   username: root
   password: root
   socket: /var/run/mysqld/mysqld.sock

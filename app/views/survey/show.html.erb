@@ -1,0 +1,37 @@
+<%= form_tag({:controller => 'survey', :action => 'survey_submit'}, :method => "post",id: "survey_submit") do %>
+<h1><%=  @survey.name %></h1>
+<h4><%= @survey.description %></h4>
+    <div class=" row  my-form-group " >
+  <label class="my-control-label" for="inputNormal"> Email Address:  </label>
+      <%= text_field_tag :email_id,"",:required => true%>
+  <%#= select_tag "count", options_for_select(SecretCodes::COUNT_OPTIONS,10) %>
+      </div>
+<div class=" row  my-form-group " >
+  <label class="my-control-label" for="inputNormal"> Name:  </label>
+  <%= text_field_tag :name,"",:required => true%>
+</div>
+<%= hidden_field_tag "survey_id",@survey.id,:required => true%>
+
+<% @survey.questions.each_with_index do  |question,index| %>
+    <div>
+      <%= index+1%>.
+      <%= question.info%>
+      <%= hidden_field_tag "questions[]",question.id,:required => true%>
+      <% if question.type == "text" %>
+          <div>
+            <%= text_field_tag "answers[]","",:required => true%>
+          </div>
+    <% elsif question.type == "mcq"%>
+      <% question.answers.each_with_index do |ans,index| %>
+              <div>
+                 <%= radio_button_tag "answers[]", ans.info %><%= ans.info%>
+              </div>
+      <% end %>
+    <% end %>
+
+    </div>
+<% end %>
+<div>
+      <%= submit_tag 'submit' ,class: "btn btn-success btn-confirm btn-action "%>
+      </div>
+  <% end -%>

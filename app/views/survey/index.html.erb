@@ -1,0 +1,20 @@
+survey
+
+
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th>name</th>
+    <th>description</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @survey.each do |s| %>
+      <tr>
+        <td><%= s.name %></td>
+        <td><%= s.description%></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
